@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :update, :destroy]
+  before_action :set_subject, only: [:show, :update, :edit, :destroy]
 
   # GET /subjects
   # GET /subjects.json
@@ -49,8 +49,6 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
-    @subject = Subject.find(params[:id])
-    #@subject.costs.order(:id)
   end
 
   # POST /subjects
@@ -73,7 +71,6 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
-    @subject = Subject.find(params[:id])
     respond_to do |format|
       if @subject.update(subject_params)
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }
