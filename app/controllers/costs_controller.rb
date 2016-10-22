@@ -4,7 +4,7 @@ class CostsController < ApplicationController
   # GET /costs
   # GET /costs.json
   def index
-    @costs = Cost.all
+    @costs = Cost.all.order(:id)
   end
 
   # GET /costs/1

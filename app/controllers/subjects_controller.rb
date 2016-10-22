@@ -1,5 +1,5 @@
 class SubjectsController < ApplicationController
-  before_action :set_subject, only: [:show, :edit, :destroy]
+  before_action :set_subject, only: [:show, :update, :destroy]
 
   # GET /subjects
   # GET /subjects.json
@@ -49,7 +49,8 @@ class SubjectsController < ApplicationController
 
   # GET /subjects/1/edit
   def edit
-    @subject = Subject.order(:id).find(params[:id])
+    @subject = Subject.find(params[:id])
+    #@subject.costs.order(:id)
   end
 
   # POST /subjects
@@ -98,7 +99,7 @@ class SubjectsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_subject
       @subject = Subject.find(params[:id])
-      @subjects = @subject.costs
+      @subjects = @subject.costs.order(:id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
