@@ -1,6 +1,5 @@
 class SubjectsController < ApplicationController
-  #before_action :authenticate_user!
-  before_action :set_subject, only: [:show, :update, :edit, :destroy]
+  before_action :set_subject, only: [:show, :edit, :destroy]
 
   # GET /subjects
   # GET /subjects.json
@@ -72,6 +71,7 @@ class SubjectsController < ApplicationController
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
+    @subject = Subject.find(params[:id])
     respond_to do |format|
       if @subject.update(subject_params)
         format.html { redirect_to @subject, notice: 'Subject was successfully updated.' }

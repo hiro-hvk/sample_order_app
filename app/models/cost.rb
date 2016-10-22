@@ -3,10 +3,6 @@ class Cost < ActiveRecord::Base
   belongs_to :user
   belongs_to :subject
 
-  #validates :sign, presence: {message: 'を入力してください'}
-  
-  
-  
   def cost_unit_price
     hvk.to_i + fujii.to_i + imamoto.to_i
   end

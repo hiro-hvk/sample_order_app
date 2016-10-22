@@ -4,14 +4,6 @@
 <p id="notice"><%= notice %></p>
 <h1 class="h1_title text-center">原価表詳細</h1>
 
-<div id="order-link">
-<!-- 「note: @note」という部分は「パーシャルで用いられている変数名: パーシャルに渡したいオブジェクト」-->
-  <!-- %= render partial: "orders/order_links", locals: { subject: @subject.orders_receiveds } % -->
-
-  <!-- render partial: 'shared/item_header', locals: { item: @item } -->
-</div>
-
-
 <table class="table-bordered">
  <thead>
    <tr class="cost_bg_color">
@@ -37,9 +29,7 @@
      <th class="cost_th">粗利益</th>
    </tr>
  <tbody>
-     <!--% @subjects.each do |cost| %-->
      <% @subjects.each do |cost| %>
-     <!--% @subject.costs.order(:sign).each do |cost| %-->
        <tr>
          <td class="number_center"><%= cost.sign %></td>
          <td class="cost_td"><%= cost.material %></td>
@@ -89,7 +79,6 @@
 <div class="text-center space">
   <%= link_to '一覧に戻る', subjects_path, class: 'btn btn-default btn-success visited_white' %>
 </div>
-
 
 <!-- //END inner --></div>
 <!-- //END Wrapper --></div>

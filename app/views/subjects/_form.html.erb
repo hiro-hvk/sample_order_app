@@ -5,7 +5,7 @@
       <td>
         <div class="field form-group subjects_left_space">
           <%= f.label :件名 %><br>
-          <%= f.text_field :title, class: 'form-control', placeholder: 'SNO.720' %>
+          <%= f.text_field :title, class: 'form-control' %>
         </div>
       </td>
       
@@ -14,14 +14,13 @@
           <% end %>
           
           <div class="text-center specification_btn">
-            <!--%= link_to_add_association '明細を追加', f, :costs, class: 'btn btn-default btn-success visited_white' %-->
             <%= link_to_add_association '明細を追加する', f, :costs, data: { association_insertion_method: 'before' } %>
           </div>
           
 
           <div class="field form-group remarks_wrapper">
             <%= f.label :原価表・備考欄 %><br>
-            <%= f.text_area :remarks, class: 'form-control remarks_area', placeholder: '符号１：N×３' %>
+            <%= f.text_area :remarks, class: 'form-control remarks_area' %>
           </div>
   
   <div class="actions text-center">
@@ -29,18 +28,3 @@
     <%= f.submit '登録', class: 'btn btn-default btn-success visited_white' %>
   </div>
 <% end %>
-
-
-<script>
- jQuery(function ($) {
-  $("#button_01").click( function() {
-    // テキストボックスのデータを取得します
-    var getData = $("#text_01").val();
-    
-    if(getData == "三ツ星" || getData == "三つ星" || getData == "三ッ星" ){
-    // 取得値をアラートで表示します
-    alert("巴バルブの運賃は1台につき2,000円にしてください。");
-    }
-  });
-});
-</script>
