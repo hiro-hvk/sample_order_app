@@ -1,0 +1,33 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subject_id: 
+  material: MyString
+  product: MyString
+  pressure: MyString
+  size: MyString
+  quantity: MyString
+  hvk: MyString
+  fujii: MyString
+  imamoto: MyString
+  selling_price: MyString
+  remarks: MyText
+  sign: MyString
+  product_model: MyString
+  unit: MyString
+
+two:
+  subject_id: 
+  material: MyString
+  product: MyString
+  pressure: MyString
+  size: MyString
+  quantity: MyString
+  hvk: MyString
+  fujii: MyString
+  imamoto: MyString
+  selling_price: MyString
+  remarks: MyText
+  sign: MyString
+  product_model: MyString
+  unit: MyString

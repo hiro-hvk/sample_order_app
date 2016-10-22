@@ -1,0 +1,95 @@
+<div id="wrapper">
+<div id="inner">
+
+<p id="notice"><%= notice %></p>
+<h1 class="h1_title text-center">原価表詳細</h1>
+
+<div id="order-link">
+<!-- 「note: @note」という部分は「パーシャルで用いられている変数名: パーシャルに渡したいオブジェクト」-->
+  <!-- %= render partial: "orders/order_links", locals: { subject: @subject.orders_receiveds } % -->
+
+  <!-- render partial: 'shared/item_header', locals: { item: @item } -->
+</div>
+
+
+<table class="table-bordered">
+ <thead>
+   <tr class="cost_bg_color">
+     <th class="cost_th">符号</th>
+     <th class="cost_th">材質 / 部品NO</th>
+     <th class="cost_th">品名</th>
+     <th class="cost_th">型式</th>
+     <th class="cost_th">圧力</th>
+     <th class="cost_th">サイズ</th>
+     <th class="cost_th">数量</th>
+     <th class="cost_th">単位</th>
+     <th class="cost_th">仕入先A</th>
+     <th class="cost_th">仕入先B</th>
+     <th class="cost_th">仕入先C</th>
+     <th class="cost_th">原価</th>
+     <th class="cost_th">原価計</th>
+     <th class="cost_th">仕入先A 合計</th>
+     <th class="cost_th">仕入先B 合計</th>
+     <th class="cost_th">仕入先C 合計</th>
+     <th class="cost_th">売価</th>
+     <th class="cost_th">売価計</th>
+     <th class="cost_th">粗利益率</th>
+     <th class="cost_th">粗利益</th>
+   </tr>
+ <tbody>
+     <!--% @subjects.each do |cost| %-->
+     <% @subjects.each do |cost| %>
+     <!--% @subject.costs.order(:sign).each do |cost| %-->
+       <tr>
+         <td class="number_center"><%= cost.sign %></td>
+         <td class="cost_td"><%= cost.material %></td>
+         <td class="product_td"><%= cost.product %></td>
+         <td class="cost_td"><%= cost.product_model %></td>
+         <td class="cost_td"><%= cost.pressure %></td>
+         <td class="cost_td"><%= cost.size %></td>
+         <td class="number_center"><%= cost.quantity %></td>
+         <td class="cost_td number_center"><%= cost.unit %></td>
+         <td class="cost_td"><%= number_with_delimiter(cost.hvk.to_i) %></td><!-- HVK単 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.fujii.to_i) %></td><!-- 藤居単 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.imamoto.to_i) %></td><!-- 今本単 -->
+         <!--td class="cost_td"--><!--%= number_with_delimiter(cost.hvk.to_i + cost.fujii.to_i + cost.imamoto.to_i) %--><!--/td--><!-- 原価単 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.cost_unit_price) %></td><!-- 原価単 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.total_cost) %></td><!-- 原価計 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.hvk_total) %></td><!-- HVK計 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.fujii_total) %></td><!-- 藤居計 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.imamoto_total) %></td><!-- 今本計 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.selling_price.to_i) %></td><!-- 売価単 -->
+         <td class="cost_td"><%= number_with_delimiter(cost.selling_price_total) %></td><!-- 売価計 -->
+         
+         <!--  # 粗利率(売価 / 原価) -->
+         <!-- 「値引き」用に原価計が0の場合は粗利益率も0%と表示 -->
+         <% if cost.total_cost == 0 %>
+           <td class="cost_td">0%</td>
+         <% elsif cost.total_cost != 0 %>
+           <td class="cost_td"><%= number_with_delimiter(cost.gross_margin_rate) %>%</td>
+         <% end %>
+         
+         <td class="cost_td"><%= number_with_delimiter(cost.gross_profit) %></td><!-- # 粗利計(売価計 - 原価合計) -->
+       </tr>
+     <% end %>
+     <tr><td colspan="2" class="text-center">合計</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td class="cost_td"><%= number_with_delimiter(@price_total) %></td><td class="cost_td"><%= number_with_delimiter(@hvk_total) %></td><td class="cost_td"><%= number_with_delimiter(@fujii_total) %></td><td class="cost_td"><%= number_with_delimiter(@imamoto_total) %></td><td></td><td class="cost_td"><%= number_with_delimiter(@selling_price_total) %></td><td class="cost_td"><%= number_with_delimiter(@grossmargin_rate) %>%</td><td class="cost_td"><%= number_with_delimiter(@gross_profit) %></td></tr>
+ </tbody>
+</table>
+
+<% if @subject.remarks.empty? == false %>
+  <p class="subject_remarks">備考</p>
+  <p><%= simple_format(@subject.remarks, class: "text-left subject_remarks_area") %></p>
+<% end %>
+
+<div class="text-center subject_space_top">
+  <%= link_to '編集', edit_subject_path(@subject), class: 'btn btn-info visited_white' %>
+  <%= link_to '削除', @subject, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger visited_white' %>
+  
+  
+<div class="text-center space">
+  <%= link_to '一覧に戻る', subjects_path, class: 'btn btn-default btn-success visited_white' %>
+</div>
+
+
+<!-- //END inner --></div>
+<!-- //END Wrapper --></div>

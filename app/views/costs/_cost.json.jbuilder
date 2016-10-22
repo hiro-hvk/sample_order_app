@@ -1,0 +1,2 @@
+json.extract! cost, :id, :subject_id, :material, :product, :pressure, :size, :quantity, :hvk, :fujii, :imamoto, :selling_price, :remarks, :sign, :product_model, :unit, :created_at, :updated_at
+json.url cost_url(cost, format: :json)

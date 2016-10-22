@@ -1,0 +1,32 @@
+<table class="table-bordered nested-fields">
+  <tr class="cost_bg_color">
+    <th class="cost_th">符号</th>
+    <th class="cost_th">材質 / 部品NO</th>
+    <th class="cost_th">品名</th>
+    <th class="cost_th">型式</th>
+    <th class="cost_th">圧力</th>
+    <th class="cost_th">サイズ</th>
+    <th class="cost_th">数量</th>
+    <th class="cost_th">単位</th>
+    <th class="cost_th">仕入先A</th>
+    <th class="cost_th">仕入先B</th>
+    <th class="cost_th">仕入先C</th>
+    <th class="cost_th">売価</th>
+    <th class="text-center danger">削除</th>
+  </tr>
+  <tr>
+    <td class="cost_td number_center"><%= f.text_field :sign, size: "5px", class: "text-center", onKeyup: "this.value=this.value.replace(/[^0-9]+/i,'')", onblur: "this.value=this.value.replace(/[^0-9]+/i,'')" %></td><!-- 符号 -->
+    <td class="cost_td"><%= f.text_field :material, size: "10px", class: "text-center" %></td><!-- 材質 -->
+    <td class="product_td"><%= f.text_field :product, size: "15px", class: "text-right" %></td><!-- 品名 -->
+    <td class="product_td"><%= f.text_field :product_model, size: "15px", class: "text-right" %></td><!-- 型式 -->
+    <td class="cost_td"><%= f.text_field :pressure, size: "5px", class: "text-right" %></td><!-- 圧力 -->
+    <td class="cost_td"><%= f.text_field :size, size: "5px", class: "text-right" %></td><!-- サイズ -->
+    <td class="cost_td number_center"><%= f.text_field :quantity, size: "5px", class: "text-center", onKeyup: "this.value=this.value.replace(/[^-0-9]+/i,'')", onblur: "this.value=this.value.replace(/[^-0-9]+/i,'')" %></td><!-- 数量、値引き用に -(マイナス)を許可、onKeyup、onblue両方に設定 -->
+    <td class="cost_td"><%= f.text_field :unit, size: "5px", class: "text-right" %></td><!-- 単位 -->
+    <td class="cost_td"><%= f.text_field :hvk, size: "10px", class: "text-right", onKeyup: "this.value=this.value.replace(/[^0-9]+/i,'')", onblur: "this.value=this.value.replace(/[^0-9]+/i,'')" %></td>
+    <td class="cost_td"><%= f.text_field :fujii, size: "10px", class: "text-right", onKeyup: "this.value=this.value.replace(/[^0-9]+/i,'')", onblur: "this.value=this.value.replace(/[^0-9]+/i,'')" %></td>
+    <td class="cost_td"><%= f.text_field :imamoto, size: "10px", class: "text-right", onKeyup: "this.value=this.value.replace(/[^0-9]+/i,'')", onblur: "this.value=this.value.replace(/[^0-9]+/i,'')" %></td>
+    <td class="cost_td"><%= f.text_field :selling_price, size: "10px", class: "text-right", onKeyup: "this.value=this.value.replace(/[^0-9]+/i,'')", onblur: "this.value=this.value.replace(/[^0-9]+/i,'')" %></td><!-- 売価 -->
+    <td class="cost_td"><%= link_to_remove_association '削除', f, class: 'btn btn-default' %></td>
+  </tr>
+ </table>
